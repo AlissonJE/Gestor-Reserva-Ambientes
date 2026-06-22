@@ -1,26 +1,29 @@
 package com.example.GestionAmbientes.dto;
 
-public class InstructorDto {
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import java.time.LocalDateTime;
 
-    private String nombre;
-    private String email;
+@Data
+public class ReservaDto {
 
-    public InstructorDto() {
-    }
+    @NotNull(message = "El ID del ambiente es obligatorio")
+    private Long ambienteId;
 
-    public String getNombre() {
-        return nombre;
-    }
+    @NotBlank(message = "El instructor es obligatorio")
+    private String instructor;
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    @NotNull(message = "La fecha de inicio es obligatoria")
+    @FutureOrPresent(message = "La fecha de inicio debe ser actual o futura")
+    private LocalDateTime inicio;
 
-    public String getEmail() {
-        return email;
-    }
+    @NotNull(message = "La fecha de fin es obligatoria")
+    private LocalDateTime fin;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    @Min(value = 1, message = "Debe haber al menos 1 aprendiz")
+    private int aprendices;
+
+    private String estado = "PROGRAMADA";
 }
