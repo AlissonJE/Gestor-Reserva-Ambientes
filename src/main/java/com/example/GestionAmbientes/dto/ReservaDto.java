@@ -1,64 +1,27 @@
-    package com.example.GestionAmbientes.dto;
+package com.example.GestionAmbientes.dto;
 
-    import java.time.LocalDateTime;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import java.time.LocalDateTime;
 
-    public class ReservaDto {
+@Data
+public class ReservaDto {
 
-        private Long ambienteId;
-        private String instructor;
-        private LocalDateTime inicio;
-        private LocalDateTime fin;
-        private int aprendices;
-        private String estado;
+    @NotNull(message = "El id del ambiente es obligatorio")
+    private Long ambienteId;
 
-        public ReservaDto() {
-        }
+    @NotBlank(message = "El nombre del instructor es obligatorio")
+    private String instructor;
 
-        public Long getAmbienteId() {
-            return ambienteId;
-        }
+    @NotNull(message = "La fecha y hora de inicio es obligatoria")
+    private LocalDateTime inicio;
 
-        public void setAmbienteId(Long ambienteId) {
-            this.ambienteId = ambienteId;
-        }
+    @NotNull(message = "La fecha y hora de fin es obligatoria")
+    private LocalDateTime fin;
 
-        public String getInstructor() {
-            return instructor;
-        }
-
-        public void setInstructor(String instructor) {
-            this.instructor = instructor;
-        }
-
-        public LocalDateTime getInicio() {
-            return inicio;
-        }
-
-        public void setInicio(LocalDateTime inicio) {
-            this.inicio = inicio;
-        }
-
-        public LocalDateTime getFin() {
-            return fin;
-        }
-
-        public void setFin(LocalDateTime fin) {
-            this.fin = fin;
-        }
-
-        public int getAprendices() {
-            return aprendices;
-        }
-
-        public void setAprendices(int aprendices) {
-            this.aprendices = aprendices;
-        }
-
-        public String getEstado() {
-            return estado;
-        }
-
-        public void setEstado(String estado) {
-            this.estado = estado;
-        }
-    }
+    @NotNull(message = "El número de aprendices es obligatorio")
+    @Min(value = 1, message = "Debe haber al menos 1 aprendiz")
+    private Integer aprendices;
+}

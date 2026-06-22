@@ -1,9 +1,8 @@
 package com.example.GestionAmbientes.entities;
 
+import com.example.GestionAmbientes.enums.TipoAmbiente;
+
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,11 +18,9 @@ public class AmbienteEnt {
 
     private String nombre;
 
-    @NotBlank
-    private String tipo;
+    @Enumerated(EnumType.STRING)
+    private TipoAmbiente tipo;
 
-    @NotNull
-    @Min(1)
     private Integer capacidad;
 
     private Boolean activo = true;

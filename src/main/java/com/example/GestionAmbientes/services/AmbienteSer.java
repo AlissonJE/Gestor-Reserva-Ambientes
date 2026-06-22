@@ -1,12 +1,18 @@
 package com.example.GestionAmbientes.services;
 
-import java.util.List;
-import org.springframework.stereotype.Service;
+import com.example.GestionAmbientes.dto.AmbienteDTO;
 import com.example.GestionAmbientes.entities.AmbienteEnt;
+import com.example.GestionAmbientes.exceptions.BusinessConflictException;
+import com.example.GestionAmbientes.exceptions.ResourceNotFoundException;
 import com.example.GestionAmbientes.repositories.AmbienteRep;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class AmbienteSer {
+
     private final AmbienteRep repository;
 
     public AmbienteSer(AmbienteRep repository) {
@@ -14,18 +20,29 @@ public class AmbienteSer {
     }
 
     public List<AmbienteEnt> obtenerTodos() {
-        return this.repository.findAll();
+        return repository.findAll();
     }
 
-    public AmbienteEnt crear(AmbienteEnt ambiente) {
-        if (repository.existsByNombre(ambiente.getNombre())) {
-            throw new RuntimeException("Ya existe un ambiente con ese nombre.");
+    public AmbienteEnt crear(AmbienteDTO dto) {
+        if (repository.existsByNombre(dto.getNombre())) {
+            throw new BusinessConflictException("Nombre único", "Ya existe un ambiente con ese nombre.");
         }
-        return this.repository.save(ambiente);
+
+        AmbienteEnt ambiente = new AmbienteEnt();
+        ambiente.setNombre(dto.getNombre());
+        ambiente.setTipo(dto.getTipo());
+        ambiente.setCapacidad(dto.getCapacidad());
+        ambiente.setActivo(dto.getActivo() == null ? true : dto.getActivo());
+
+        return repository.save(ambiente);
     }
 
     public AmbienteEnt buscarPorId(Long id) {
-        return this.repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Ambiente no encontrado"));
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Ambiente no encontrado."));
+    }
+
+    public List<AmbienteEnt> obtenerDisponibles(LocalDateTime inicio, LocalDateTime fin) {
+        return repository.findDisponibles(inicio, fin);
     }
 }
