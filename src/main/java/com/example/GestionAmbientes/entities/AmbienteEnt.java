@@ -17,7 +17,7 @@ public class AmbienteEnt {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String nombre;
 
@@ -26,7 +26,7 @@ public class AmbienteEnt {
 
     @NotNull
     @Min(1)
-    private Integer capacidad;
+    private int capacidad;
 
     private Boolean activo = true;
 }
