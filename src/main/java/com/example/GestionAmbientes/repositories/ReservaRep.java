@@ -9,9 +9,11 @@ import com.example.GestionAmbientes.entities.ReservaEnt;
 
 public interface ReservaRep extends JpaRepository<ReservaEnt, Long> {
 
-    @Query("SELECT r FROM ReservaEnt r WHERE r.ambiente.id = :id AND " +
-            "(r.inicio < :fin AND r.fin > :inicio)")
-    List<ReservaEnt> findSolapamientos(@Param("id") Long id,
-            @Param("inicio") LocalDateTime inicio,
-            @Param("fin") LocalDateTime fin);
+        @Query("SELECT r FROM ReservaEnt r WHERE r.ambiente.id = :id AND (r.inicio < :fin AND r.fin > :inicio)")
+        List<ReservaEnt> findSolapamientos(@Param("id") Long id,
+                        @Param("inicio") LocalDateTime inicio,
+                        @Param("fin") LocalDateTime fin);
+
+        @Query("SELECT r.ambiente.nombre, COUNT(r) FROM ReservaEnt r GROUP BY r.ambiente.nombre ORDER BY COUNT(r) DESC")
+        List<Object[]> contarReservasPorAmbiente();
 }
