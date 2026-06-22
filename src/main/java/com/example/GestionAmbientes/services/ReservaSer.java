@@ -19,6 +19,15 @@ public class ReservaSer {
     }
 
     public ReservaEnt crear(ReservaEnt reserva) {
+        List<ReservaEnt> conflictos = repository.findSolapamientos(
+                reserva.getAmbiente().getId(),
+                reserva.getInicio(),
+                reserva.getFin());
+
+        if (!conflictos.isEmpty()) {
+            throw new RuntimeException("El ambiente ya tiene una reserva en este horario.");
+        }
+
         return this.repository.save(reserva);
     }
 }
