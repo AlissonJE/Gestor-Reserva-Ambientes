@@ -7,7 +7,6 @@ import com.example.GestionAmbientes.repositories.InstructorRep;
 
 @Service
 public class InstructorSer {
-
     private final InstructorRep repository;
 
     public InstructorSer(InstructorRep repository) {
@@ -19,6 +18,9 @@ public class InstructorSer {
     }
 
     public InstructorEnt crear(InstructorEnt instructor) {
+        if (repository.findByEmail(instructor.getEmail()).isPresent()) {
+            throw new RuntimeException("Ya existe un instructor con ese email.");
+        }
         return this.repository.save(instructor);
     }
 }
