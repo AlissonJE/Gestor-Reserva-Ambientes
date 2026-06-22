@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "05817755-f070-43ff-af45-b43494e65a29",
+		"name": "Gestor Reserva Ambientes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "56076623",
+		"_collection_link": "https://alissonjaramillo62-6823088.postman.co/workspace/Alisson-Jaramillo's-Workspace~6b06170c-4259-47a2-808e-6dcfe6e4af8a/collection/56076623-05817755-f070-43ff-af45-b43494e65a29?action=share&source=collection_link&creator=56076623"
+	},
+	"item": [
+		{
+			"name": "Gestion Ambientes",
+			"item": [
+				{
+					"name": "Peticion Ambientes",
+					"item": [
+						{
+							"name": "Obtener Datos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/ambientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"ambientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Creacion Ambiente",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Laboratorio de Computación 1\",\r\n    \"tipo\": \"LABORATORIO\",\r\n    \"capacidad\": 30,\r\n    \"activo\": true\r\n}\r\n\r\n\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/ambientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"ambientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Creacion Ambiente Inactivo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Laboratorio de Computación 2\",\r\n    \"tipo\": \"LABORATORIO\",\r\n    \"capacidad\": 20,\r\n    \"activo\": false\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/ambientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"ambientes"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reserva Ambientes",
+					"item": [
+						{
+							"name": "Obetener Datos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/reservas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"reservas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Creacion Resesrva",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"instructor\": \"Andres\",\r\n    \"ambienteId\": 1,\r\n    \"aprendices\": 20,\r\n    \"inicio\": \"2026-06-30T08:00:00\",\r\n    \"fin\": \"2026-06-30T10:00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/reservas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"reservas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reserva cruce de horarios",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"instructor\": \"Rigoberto Diaz\",\r\n    \"ambienteId\": 2,\r\n    \"aprendices\": 14,\r\n    \"inicio\": \"2026-06-20T09:00:00\",\r\n    \"fin\": \"2026-06-20T11:00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/reservas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"reservas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Capacidad Ambiente",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"instructor\": \"Rigoberto Diaz\",\r\n    \"ambienteId\": 2,\r\n    \"aprendices\": 50,\r\n    \"inicio\": \"2026-06-23T09:00:00\",\r\n    \"fin\": \"2026-06-23T11:00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/reservas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"reservas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reserva fuera de horario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"instructor\": \"Rigoberto Diaz\",\r\n    \"ambienteId\": 2,\r\n    \"aprendices\": 20,\r\n    \"inicio\": \"2026-06-23T22:30:00\",\r\n    \"fin\": \"2026-06-23T23:30:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/reservas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"reservas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reserva Inactiva",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"instructor\": \"Andres\",\r\n    \"ambienteId\": 5,\r\n    \"aprendices\": 20,\r\n    \"inicio\": \"2026-06-30T08:00:00\",\r\n    \"fin\": \"2026-06-30T10:00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/reservas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"reservas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancelar Reserva",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/reservas/2/cancelar",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"reservas",
+										"2",
+										"cancelar"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
