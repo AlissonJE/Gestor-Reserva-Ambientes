@@ -16,7 +16,7 @@ public class InstructorCont {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping("/get")
     public List<InstructorEnt> getAll() {
         return this.service.obtenerTodos();
     }

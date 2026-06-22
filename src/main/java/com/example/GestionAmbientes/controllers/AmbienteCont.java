@@ -16,7 +16,7 @@ public class AmbienteCont {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping("/get")
     public List<AmbienteEnt> getAll() {
         return this.service.obtenerTodos();
     }
